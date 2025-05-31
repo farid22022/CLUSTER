@@ -1,11 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Mooli&family=Poppins:ital,wght@0,400;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url('https://fonts.cdnfonts.com/css/miama');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   font-family: "Manrope", sans-serif;
   font-style: normal;
   overflow-x: hidden;
   overflow-x: clip;
+}
+
+.link-hover:hover {
+  background: linear-gradient(45deg, #433878, #b0367b); 
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  color: transparent;
+  text-decoration: none;
+}
+
+/* For all Button */
+.btn-link {
+  text-align: center;
+  transition: all 0.3s ease; 
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  background: linear-gradient(to right, #f97316, #ef4444);
+  color: white; 
+  border: none; 
+  text-decoration: none;
 }

@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/datathon',
-        element: <DatathonDetailsPage />,
+        element: <DatathonDetailsPage />, 
     }
 ])
 

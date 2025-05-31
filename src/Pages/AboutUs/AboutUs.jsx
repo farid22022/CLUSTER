@@ -1,20 +1,19 @@
-import { Helmet } from "react-helmet-async";
 import About from "./About/About";
-// import CommitteeAndVolunteerList from "./CommitteeAndVolunteerList/CommitteeAndVolunteerList";
+import Achievements from "./Achievements/Achievements";
+import FacultyAdvisors from "./FacultyAdvisors/FacultyAdvisors";
+import HistoryTimeline from "./HistoryTimeline/HistoryTimeline";
 
 
 const AboutUs = () => {
-    return (
-        <div className="space-y-2 ">
-            <Helmet>
-                <title>AboutUs | KUCSE-Symposium-2024</title>
-            </Helmet>
-            {/* <Banner2></Banner2> */}
-            {/* <CommitteeAndVolunteerList></CommitteeAndVolunteerList> */}
-            <About></About>
-            
-        </div>
-    );
+  return (
+    <div className="bg-gray-50 font-sans">
+        
+      <About />
+      <HistoryTimeline />
+      <FacultyAdvisors />
+      <Achievements />
+    </div>
+  );
 };
 
 export default AboutUs;
