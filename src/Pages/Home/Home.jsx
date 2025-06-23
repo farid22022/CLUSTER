@@ -2,16 +2,26 @@
 import Banner from "./Banner/Banner";
 import CommunitySpotlight from "./CommunitySpotlight/CommunitySpotlight";
 import FeaturedEvents from "./FeaturedEvents/FeaturedEvents";
-// import Sponsors from "./Sponsor/Sponsorship";
+import HeroStats from "./HeroStats/HeroStats";
+import Sponsors from "./Sponsor/Sponsorship";
+import Team from "./Team/Team";
+import TechStack from "./TechStack/TechStack";
+import Testimonials from "./Testimonials/Testimonials";
+import Timeline from "./Timeline/Timeline";
 
 
 const Home = () => {
   return (
     <div className="bg-gray-50 font-sans">
       <Banner />
+      <HeroStats />
       <FeaturedEvents />
+      <Testimonials />
       <CommunitySpotlight />
-      {/* <Sponsors /> */}
+      <Timeline />
+      <TechStack />
+      <Team />
+      <Sponsors />
     </div>
   );
 };
