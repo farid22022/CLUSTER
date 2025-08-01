@@ -58,19 +58,7 @@ const Alumni = () => {
     };
   }, []);
 
-  // Background animation variants
-  // const backgroundVariants = {
-  //   hidden: { opacity: 0 },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       staggerChildren: 0.1,
-  //       when: "beforeChildren"
-  //     }
-  //   }
-  // };
 
-  // Animation for floating elements
   const floatingAnimation = {
     float: {
       y: [0, -15, 0],
@@ -412,91 +400,147 @@ const Alumni = () => {
                 </div>
               )}
 
-              {activeTab === 'directory' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { name: 'John Doe', batch: '2015', role: 'Senior Software Engineer', company: 'Google' },
-                    { name: 'Jane Smith', batch: '2017', role: 'Data Scientist', company: 'Microsoft' },
-                    { name: 'Ahmed Rahman', batch: '2019', role: 'Machine Learning Engineer', company: 'Amazon' },
-                    { name: 'Fatima Khan', batch: '2018', role: 'DevOps Specialist', company: 'IBM' },
-                    { name: 'Rahim Islam', batch: '2016', role: 'Cybersecurity Analyst', company: 'Cisco' },
-                    { name: 'Tasnim Ahmed', batch: '2020', role: 'Product Manager', company: 'Meta' },
-                  ].map((alumni, index) => (
-                    <motion.div
-                      key={index}
-                      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex items-center mb-4">
-                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
-                        <div className="ml-4">
-                          <h3 className="text-xl font-semibold">{alumni.name}</h3>
-                          <p className="text-gray-600">Batch: {alumni.batch}</p>
-                        </div>
-                      </div>
-                      <div className="flex-grow">
-                        <p className="text-gray-600">{alumni.role}</p>
-                        <p className="text-gray-600">{alumni.company}</p>
-                      </div>
-                      <motion.button
-                        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium self-start"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Connect
-                      </motion.button>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
+{activeTab === 'directory' && (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {[
+      { 
+        name: "Professor Dr. Kazi Masudul Alam",
+        batch: "Director",
+        role: "Faculty Advisor",
+        company: "Khulna University",
+        image_url: "https://i.ibb.co.com/bXynWfb/Money.png",
+        email: "username1@email.com"
+      },
+      { 
+        name: "Tahmid Hasan Tasfi",
+        batch: "210218",
+        role: "President",
+        company: "Khulna University",
+        image_url: "https://i.ibb.co/TqxvVFb3/tasfi.jpg",
+        email: "username1@email.com"
+      },
+      { 
+        name: "Md Tasbi Hassan",
+        batch: "210216",
+        role: "Vice President-1",
+        company: "Khulna University",
+        image_url: "https://i.ibb.co/4RhPX7Ks/tasbi.jpg",
+        email: "username2@email.com"
+      },
+      { 
+        name: "Razu Sarder",
+        batch: "220220",
+        role: "Vice President-2",
+        company: "Khulna University",
+        image_url: "https://example.com/image3.jpg",
+        email: "username3@email.com"
+      },
+    ].map((person, index) => (
+      <motion.div
+        key={index}
+        className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1 }}
+      >
+        <div className="flex items-center mb-4">
+          {person.image_url ? (
+            <img 
+              src={person.image_url} 
+              alt={person.name}
+              className="w-16 h-16 rounded-xl object-cover border-2 border-gray-200"
+            />
+          ) : (
+            <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+          )}
+          <div className="ml-4">
+            <h3 className="text-xl font-semibold">{person.name}</h3>
+            <p className="text-gray-600">{person.role}</p>
+          </div>
+        </div>
+        <div className="flex-grow space-y-1">
+          <p className="text-gray-600">Batch: {person.batch}</p>
+          <p className="text-gray-600">{person.company}</p>
+          {person.email && (
+            <p className="text-gray-600 text-sm truncate">{person.email}</p>
+          )}
+        </div>
+        <div className="flex mt-4 space-x-2">
+          <motion.button
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Connect
+          </motion.button>
+          {person.email && (
+            <motion.a
+              href={`mailto:${person.email}`}
+              className="px-4 py-2 border border-gray-300 rounded-lg font-medium"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Email
+            </motion.a>
+          )}
+        </div>
+      </motion.div>
+    ))}
+  </div>
+)}
 
               {activeTab === 'spotlight' && (
-                <div className="grid md:grid-cols-2 gap-8">
-                  {[
-                    {
-                      name: 'Sarah Johnson',
-                      achievement: 'Developed AI-based healthcare solution',
-                      description: 'Sarah led a team to create an innovative AI diagnostic tool that improves early detection of diseases, adopted by hospitals worldwide.',
-                      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-                    },
-                    {
-                      name: 'Mohammad Ali',
-                      achievement: 'Published groundbreaking research on quantum computing',
-                      description: 'Mohammad’s research on quantum algorithms has been recognized in top-tier journals and is paving the way for future computing advancements.',
-                      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
-                    },
-                    {
-                      name: 'Nusrat Jahan',
-                      achievement: 'Tech for Good Award Winner',
-                      description: 'Nusrat founded a nonprofit that provides tech education to underprivileged communities, impacting over 10,000 students.',
-                      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2'
-                    },
-                    {
-                      name: 'Kamal Hossain',
-                      achievement: 'Blockchain Innovation Leader',
-                      description: 'Kamal developed a secure voting system using blockchain technology that is being piloted by government agencies.',
-                      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a'
-                    },
-                  ].map((spotlight, index) => (
-                    <motion.div
-                      key={index}
-                      className="bg-white p-6 rounded-lg shadow-md flex items-center gap-4"
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.2 }}
-                    >
-                      <img src={spotlight.image} alt={spotlight.name} className="w-24 h-24 rounded-full object-cover border-4 border-blue-100" />
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">{spotlight.name}</h3>
-                        <p className="text-blue-600 font-medium">{spotlight.achievement}</p>
-                        <p className="text-gray-600 mt-2">{spotlight.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
+  <div className="grid md:grid-cols-2 gap-8">
+    {[
+      
+      // New committee members
+      {
+        name: 'Md Anjir Hossain',
+        achievement: 'General Secretary',
+        description: 'Student ID: 210230 | Email: username4@email.com',
+        image: 'https://i.ibb.co/1thHGwzw/anjir.jpg'
+      },
+      {
+        name: 'Sohag Chandra',
+        achievement: 'Joint Secretary',
+        description: 'Student ID: 220238 | Email: username5@email.com',
+        image: 'https://i.ibb.co/jZ5W0PJJ/sohag.jpg'
+      },
+      {
+        name: 'Md Ashiquzzaman Rahad',
+        achievement: 'Treasurer',
+        description: 'Student ID: 210201 | Email: username6@email.com',
+        image: 'https://i.ibb.co/yB7kHjfZ/rahad.jpg'
+      },
+      {
+        name: 'Nahid Hassan',
+        achievement: 'Programming Campaign Secretary',
+        description: 'Student ID: 220229 | Email: username7@email.com',
+        image: 'https://i.ibb.co/cKHbZNg6/nahid.jpg'
+      }
+    ].map((spotlight, index) => (
+      <motion.div
+        key={index}
+        className="bg-white p-6 rounded-lg shadow-md flex items-center gap-4"
+        initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: index * 0.2 }}
+      >
+        <img
+          src={spotlight.image}
+          alt={spotlight.name}
+          className="w-24 h-24 rounded-full object-cover border-4 border-blue-100"
+        />
+        <div>
+          <h3 className="text-xl font-semibold mb-2">{spotlight.name}</h3>
+          <p className="text-blue-600 font-medium">{spotlight.achievement}</p>
+          <p className="text-gray-600 mt-2">{spotlight.description}</p>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+)}
+
 
               {activeTab === 'achievements' && (
                 <div className="space-y-6">

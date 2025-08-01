@@ -8,10 +8,8 @@ const NavBar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { 
-      path: '/about', 
-      label: 'About',
+    { path: '/', 
+      label: 'Home' 
     },
     { 
       path: '/events', 
@@ -88,7 +86,7 @@ const NavBar = () => {
               >
                 <Link 
                   to={link.path}
-                  className="px-4 py-3 flex items-center text-blue-700 hover:text-blue-900 transition-colors font-medium"
+                  className="px-4 py-3 flex items-center text-xl font-bold text-blue-700 hover:text-blue-900 transition-colors "
                 >
                   {link.label}
                   {link.submenu && (

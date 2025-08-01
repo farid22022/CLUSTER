@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiSend, FiUser, FiCode,  FiBookOpen, FiGitBranch, FiGlobe, FiChevronDown } from 'react-icons/fi';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const SubmissionForm = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,23 +16,43 @@ const SubmissionForm = ({ onClose }) => {
     domain: '',
     status: 'ongoing'
   });
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      onClose();
-      // In a real app, you would handle form submission here
-    }, 1500);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setError(null);
+  console.log('Submitting project with data:', formData,error);
+  const token = localStorage.getItem('access-token');
+  console.log('JWT Token:', token,32);
+
+  try {
+    const token = localStorage.getItem('access-token');
+   
+    if (!token) {
+      throw new Error('You must be logged in to submit a project.');
+    }
+
+    const response = await axios.post('http://localhost:5000/projects', formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('Project submitted successfully:', response.data);
+    setIsSubmitting(false);
+    onClose();
+  } catch (err) {
+    console.error('Error submitting project:', err);
+    setError(err.response?.data?.message || 'Failed to submit project. Please try again.');
+    setIsSubmitting(false);
+  }
+};
 
   const domains = ['AI/ML', 'Web Development', 'Mobile Apps', 'IoT', 'chain', 'Data Science', 'Cybersecurity', 'Cloud Computing'];
 
